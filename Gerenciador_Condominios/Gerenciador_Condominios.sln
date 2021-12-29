@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gerenciador_Condominios", "Gerenciador_Condominios\Gerenciador_Condominios.csproj", "{BDB79171-D5EF-41F5-8009-AE7F7B2909F4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gerenciador_Condominios.BLL", "Gerenciador_Condominios.BLL\Gerenciador_Condominios.BLL.csproj", "{3285EB41-DD0C-46A4-8070-E9841260AC4D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gerenciador_Condominios.DAL", "Gerenciador_Condominios.DAL\Gerenciador_Condominios.DAL.csproj", "{07CDB052-26C4-4147-A137-7C2B50706D18}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{BDB79171-D5EF-41F5-8009-AE7F7B2909F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDB79171-D5EF-41F5-8009-AE7F7B2909F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDB79171-D5EF-41F5-8009-AE7F7B2909F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3285EB41-DD0C-46A4-8070-E9841260AC4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3285EB41-DD0C-46A4-8070-E9841260AC4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3285EB41-DD0C-46A4-8070-E9841260AC4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3285EB41-DD0C-46A4-8070-E9841260AC4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07CDB052-26C4-4147-A137-7C2B50706D18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07CDB052-26C4-4147-A137-7C2B50706D18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07CDB052-26C4-4147-A137-7C2B50706D18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07CDB052-26C4-4147-A137-7C2B50706D18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
