@@ -1,4 +1,6 @@
-﻿using Gerenciador_Condominios.DAL;
+﻿using Gerenciador_Condominios.BLL.Models;
+using Gerenciador_Condominios.DAL;
+using Gerenciador_Condominios.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gerenciador_Condominios
@@ -17,6 +19,15 @@ namespace Gerenciador_Condominios
         {
             services.AddDbContext<AppDbContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<Usuario, Funcao>().AddEntityFrameworkStores<AppDbContext>();
+
+            services.AddAuthentication();
+            services.AddAuthorization();
+
+            services.ConfigurarRepositorios();
+            services.ConfigurarCookies();
+            services.ConfigurarNomeUsuario();
+            services.ConfigurarSenhaUsuario();
 
             services.AddControllersWithViews();
         }
@@ -38,6 +49,7 @@ namespace Gerenciador_Condominios
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
