@@ -33,7 +33,19 @@ namespace Gerenciador_Condominios.DAL.Repositorios
             }
         }
 
-        public  async Task IncluirUsuarioEmFuncao(Usuario usuario, string funcao)
+        public async Task DeslogarUsuario()
+        {
+            try
+            {
+                await _gerenciadorLogin.SignOutAsync();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task IncluirUsuarioEmFuncao(Usuario usuario, string funcao)
         {
             try
             {
@@ -50,6 +62,18 @@ namespace Gerenciador_Condominios.DAL.Repositorios
             try
             {
                 await _gerenciadorLogin.SignInAsync(usuario, lembrar);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<Usuario> PegarUsuarioPeloEmail(string email)
+        {
+            try
+            {
+                return await _gerenciadorUsuarios.FindByEmailAsync(email);
             }
             catch (Exception ex)
             {

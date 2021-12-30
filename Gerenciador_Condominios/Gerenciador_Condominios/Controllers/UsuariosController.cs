@@ -96,6 +96,69 @@ namespace Gerenciador_Condominios.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Login()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _usuarioRepositorio.DeslogarUsuario();
+            }
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Usuario usuario = await _usuarioRepositorio.PegarUsuarioPeloEmail(model.Email);
+
+                if (usuario != null)
+                {
+                    if (usuario.Status == StatusConta.Analisando)
+                    {
+                        return View("Analise", usuario.UserName);
+                    }
+                    else if (usuario.Status == StatusConta.Reprovado)
+                    {
+                        return View("Repovado", usuario.UserName);
+                    }
+                    else if (usuario.PrimeiroAcesso == true)
+                    {
+                        return View("RedefinirSenha", usuario);
+                    }
+                    else
+                    {
+                        PasswordHasher<Usuario> passwordHasher = new PasswordHasher<Usuario>();
+                        if (passwordHasher.VerifyHashedPassword(usuario, usuario.PasswordHash, model.Senha) != PasswordVerificationResult.Failed)
+                        {
+                            await _usuarioRepositorio.LogarUsuario(usuario, false);
+                            return RedirectToAction("Index");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("", "Usuário e/ou senhas inválidos");
+                            return View(model);
+                        }
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Usuário e/ou senhas inválidos");
+                    return View(model);
+                }
+            }
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Logout()
+        {
+            await _usuarioRepositorio.DeslogarUsuario();
+            return RedirectToAction("Login");
+        }
+
         public IActionResult Analise(string nome)
         {
             return View(nome);
