@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,5 +22,8 @@ namespace Gerenciador_Condominios.DAL.Interfaces
         Task<IEnumerable<string>> PegarFuncoesUsuario(Usuario usuario);
         Task<IdentityResult> RemoverFuncoesUsuario(Usuario usuario, IEnumerable<string> funcoes);
         Task<IdentityResult> IncluirUsuarioEmFuncoes(Usuario usuario, IEnumerable<string> funcoes);
+        Task<Usuario> PegarUsuarioPeloNome(ClaimsPrincipal usuario);
+        Task<Usuario> PegaUsuarioPeloId(string usuarioId);
+        string CodificarSenha(Usuario usuario, string senha);
     }
 }

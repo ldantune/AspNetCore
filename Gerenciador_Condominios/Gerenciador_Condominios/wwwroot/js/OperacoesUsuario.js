@@ -10,7 +10,7 @@
                 $("#" + usuarioId).removeClass("purple darken-3").addClass("green darken-3").text("Aprovado");
 
                 $("." + usuarioId).children('a').remove();
-                $("." + usuarioId).append('<a class="btn-floating blue darken-4" href="Usuarios/GerenciarUsuarios?usuarioId=' + usuarioId + '&nome=' + nome + '" asp-controller="Usuarios" asp-action="GerenciarUsuario" asp-route-usuarioId="' + usuarioId + '" asp-route-nome="' + nome + '"><i class="material-icons">group</i></a>');
+                $("." + usuarioId).append('<a class="btn-floating blue darken-4" href="Usuarios/GerenciarUsuarios?usuarioId=' + usuarioId + '&nomeCompleto=' + nome + '" asp-controller="Usuarios" asp-action="GerenciarUsuario" asp-route-usuarioId="' + usuarioId + '" asp-route-nomeCompleto="' + nome + '"><i class="material-icons">group</i></a>');
 
                 M.toast({
                     html: "Usuario aprovado",

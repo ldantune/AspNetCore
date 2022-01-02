@@ -1,6 +1,6 @@
 ﻿@model List<Gerenciador_Condominios.ViewModels.FuncaoUsuarioViewModel>
 @{
-    ViewData["Title"] = "Atualizar funcões do usuário " + @ViewBag.Nome;
+    ViewData["Title"] = "Atualizar funcões do usuário " + @ViewBag.NomeCompleto;
 }
 
 <form asp-action="GerenciarUsuario" method="post">
@@ -8,7 +8,7 @@
 
     <div class="collection with-header">
         <div class="collection-header grey darken-1">
-            <h6 class="white-text">Atualizar funções do usuário @ViewBag.Nome</h6>
+            <h6 class="white-text">@ViewData["Title"]</h6>
         </div>
 
         <div class="collection-item">

@@ -17,6 +17,7 @@ namespace Gerenciador_Condominios.DAL.Mapeamentos
             builder.Property(u => u.CPF).IsRequired().HasMaxLength(30);
             builder.HasIndex(u => u.CPF).IsUnique();
             builder.Property(u => u.Foto).IsRequired();
+            builder.Property(u => u.NomeCompleto).IsRequired();
             builder.Property(u => u.PrimeiroAcesso).IsRequired();
             builder.Property(u => u.Status).IsRequired();
 

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Gerenciador_Condominios.DAL.Migrations
 {
-    public partial class criacaoDB : Migration
+    public partial class BancoInicial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -42,6 +42,7 @@ namespace Gerenciador_Condominios.DAL.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CPF = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    NomeCompleto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Foto = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PrimeiroAcesso = table.Column<bool>(type: "bit", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
@@ -361,9 +362,9 @@ namespace Gerenciador_Condominios.DAL.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Descricao", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { "866914bc-b171-49fd-9eef-6ed8cbb31f4d", "ecc7dc16-ac31-4c43-8b13-7fc653e75e66", "Administrador do Prédio", "Administrador", "ADMINISTRADOR" },
-                    { "b5700770-d95f-4add-bd9a-7f5ba8e00555", "6affaa61-2cff-41b0-a152-a0c13b603952", "Morador do Prédio", "Morador", "MORADOR" },
-                    { "da3613cf-b98b-4ff3-95ee-4765be8b1d5f", "371d3cec-c95f-49a0-af24-37fb129e5ca2", "Síndico do Prédio", "Sindico", "SINDICO" }
+                    { "973821e9-15fe-4fc6-84a3-2098e1584a7a", "e9069fb6-d1e3-494a-a9af-2ef45ef85334", "Síndico do Prédio", "Sindico", "SINDICO" },
+                    { "bda15729-4382-40c5-862d-1f0ca174541a", "4b9dcd13-afc0-4943-a4d6-6d80bfcf2207", "Morador do Prédio", "Morador", "MORADOR" },
+                    { "e3c9e673-8728-4740-8f20-4c6c40eda7ff", "838bf5d8-0aca-4d63-9410-af13e6016ce4", "Administrador do Prédio", "Administrador", "ADMINISTRADOR" }
                 });
 
             migrationBuilder.InsertData(

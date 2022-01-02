@@ -10,6 +10,7 @@ namespace Gerenciador_Condominios.BLL.Models
     public class Usuario : IdentityUser<string>
     {
         public string CPF { get; set; }
+        public string NomeCompleto { get; set; }
         public string Foto { get; set; }
         public bool PrimeiroAcesso { get; set; }
         public StatusConta Status { get; set; }
