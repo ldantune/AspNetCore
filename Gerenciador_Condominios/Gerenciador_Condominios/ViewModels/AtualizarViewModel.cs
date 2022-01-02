@@ -8,10 +8,12 @@ namespace Gerenciador_Condominios.ViewModels
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [StringLength(40, ErrorMessage = "Use menos caracteres")]
+        [Display(Name = "Usuário")]
         public string NomeUsuario { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [StringLength(40, ErrorMessage = "Use menos caracteres")]
+        [Display(Name = "Nome Completo")]
         public string NomeCompleto { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]

@@ -15,7 +15,7 @@ namespace Gerenciador_Condominios.DAL
         {
             services.AddTransient<IUsuarioRepositorio, UsuarioRepositorio>();
             services.AddTransient<IFuncaoRepositorio, FuncaoRepositorio>();
-            //services.AddTransient<IVeiculoRepositorio, VeiculoRepositorio>();
+            services.AddTransient<IVeiculoRepositorio, VeiculoRepositorio>();
             //services.AddTransient<IEventoRepositorio, EventoRepositorio>();
             //services.AddTransient<IServicoRepositorio, ServicoRepositorio>();
             //services.AddTransient<IServicoPredioRepositorio, ServicoPredioRepositorio>();

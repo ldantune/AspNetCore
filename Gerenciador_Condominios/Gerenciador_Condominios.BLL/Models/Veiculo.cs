@@ -26,8 +26,8 @@ namespace Gerenciador_Condominios.BLL.Models
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public string Placa { get; set; }
 
-        public string UsuarioId { get; set; }
-        public Usuario Usuario { get; set; }
+        public string? UsuarioId { get; set; }
+        public Usuario? Usuario { get; set; }
 
     }
 }
