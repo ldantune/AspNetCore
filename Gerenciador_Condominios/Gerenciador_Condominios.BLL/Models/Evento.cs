@@ -19,6 +19,6 @@ namespace Gerenciador_Condominios.BLL.Models
         public DateTime Data { get; set; }
 
         public string UsuarioId { get; set; }
-        public virtual Usuario Usuario { get; set; }
+        public virtual Usuario? Usuario { get; set; }
     }
 }

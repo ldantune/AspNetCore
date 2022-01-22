@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_Condominios.DAL.Interfaces
 {
-    public interface IFuncaoRepositorio : IRepositorioGenerico<Funcao>
+    public interface IServicoPredioRepositorio : IRepositorioGenerico<ServicoPredio>
     {
-        Task AdicionarFuncao(Funcao funcao);
-        new Task Atualizar(Funcao funcao);
     }
 }

@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace Gerenciador_Condominios.DAL.Interfaces
 {
-    public interface IFuncaoRepositorio : IRepositorioGenerico<Funcao>
+    public interface IEventoRepositorio : IRepositorioGenerico<Evento>
     {
-        Task AdicionarFuncao(Funcao funcao);
-        new Task Atualizar(Funcao funcao);
+        Task<IEnumerable<Evento>> PegarEventosPeloId(string usuarioId);
     }
 }
