@@ -260,6 +260,7 @@ namespace Gerenciador_Condominios.Controllers
                 return View("GerenciarUsuario", usuarioId);
             }
 
+            TempData["Atualizacao"] = $"As funções do usuário {usuario.UserName} foram atualizadas";
             return RedirectToAction(nameof(Index));
         }
 
