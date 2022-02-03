@@ -1,4 +1,4 @@
-﻿function MontarGraficoLinhasGanhos(ano) {
+function MontarGraficoLinhasGanhos(ano) {
 
     $.ajax({
         url: '/Dashboard/DadosGraficoGanhos',

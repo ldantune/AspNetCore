@@ -1,6 +1,7 @@
 ﻿using Gerenciador_Condominios.BLL.Models;
 using Gerenciador_Condominios.DAL.Interfaces;
 using Gerenciador_Condominios.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,18 +19,21 @@ namespace Gerenciador_Condominios.Controllers
             _webHostEnvironment = webHostEnvironment;
 
         }
+        [Authorize(Roles = "Administrador,Sindico")]
         public async Task<IActionResult> Index()
         {
 
             return View(await _usuarioRepositorio.PegarTodos());
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Registro()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> Registro(RegistroViewModel model, IFormFile foto)
@@ -101,6 +105,7 @@ namespace Gerenciador_Condominios.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Login()
         {
@@ -111,6 +116,7 @@ namespace Gerenciador_Condominios.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel model)
@@ -139,7 +145,14 @@ namespace Gerenciador_Condominios.Controllers
                         if (passwordHasher.VerifyHashedPassword(usuario, usuario.PasswordHash, model.Senha) != PasswordVerificationResult.Failed)
                         {
                             await _usuarioRepositorio.LogarUsuario(usuario, false);
-                            return RedirectToAction("Index");
+                            if(await _usuarioRepositorio.VerificarSeUsuarioEstaEmFuncao(usuario, "Morador"))
+                            {
+                                return RedirectToAction(nameof(MinhasInformacoes));
+                            }
+                            else
+                            {
+                                return RedirectToAction(nameof(Index));
+                            }
                         }
                         else
                         {
@@ -157,6 +170,7 @@ namespace Gerenciador_Condominios.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
@@ -174,6 +188,12 @@ namespace Gerenciador_Condominios.Controllers
             return View(nome);
         }
 
+        public IActionResult AcessoNegado()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "Administrador,Sindico")]
         public async Task<JsonResult> AprovarUsuario(string usuarioId)
         {
             Usuario usuario = await _usuarioRepositorio.PegarPeloId(usuarioId);
@@ -184,6 +204,7 @@ namespace Gerenciador_Condominios.Controllers
             return Json(true);
         }
 
+        [Authorize(Roles = "Administrador,Sindico")]
         public async Task<JsonResult> ReprovarUsuario(string usuarioId)
         {
             Usuario usuario = await _usuarioRepositorio.PegarPeloId(usuarioId);
@@ -193,6 +214,7 @@ namespace Gerenciador_Condominios.Controllers
             return Json(true);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpGet]
         public async Task<IActionResult> GerenciarUsuario(string usuarioId, string nomeCompleto)
         {
@@ -232,6 +254,7 @@ namespace Gerenciador_Condominios.Controllers
             return View(viewModel);
         }
 
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         public async Task<IActionResult> GerenciarUsuario(List<FuncaoUsuarioViewModel> model)
         {
@@ -264,11 +287,13 @@ namespace Gerenciador_Condominios.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize]
         public async Task<IActionResult> MinhasInformacoes()
         {
             return View(await _usuarioRepositorio.PegarUsuarioPeloNome(User));
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> Atualizar(string id)
         {
@@ -293,6 +318,7 @@ namespace Gerenciador_Condominios.Controllers
             return View(model);
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Atualizar(AtualizarViewModel viewModel, IFormFile foto)
@@ -340,6 +366,7 @@ namespace Gerenciador_Condominios.Controllers
             return View(viewModel);
         }
 
+        //[Authorize]
         [HttpGet]
         public IActionResult RedefinirSenha(Usuario usuario)
         {
@@ -351,6 +378,7 @@ namespace Gerenciador_Condominios.Controllers
             return View(model);
         }
 
+        //[Authorize]
         [HttpPost]
         public async Task<IActionResult> RedefinirSenha(LoginViewModel model)
         {

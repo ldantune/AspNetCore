@@ -1,9 +1,11 @@
 ﻿using Gerenciador_Condominios.BLL.Models;
 using Gerenciador_Condominios.DAL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gerenciador_Condominios.Controllers
 {
+    [Authorize]
     public class PagamentosController : Controller
     {
         private readonly IPagamentoRepositorio _pagamentoRepositorio;

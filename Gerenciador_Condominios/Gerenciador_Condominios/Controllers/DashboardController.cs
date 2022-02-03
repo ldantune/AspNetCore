@@ -1,10 +1,12 @@
 ﻿using Gerenciador_Condominios.DAL.Interfaces;
 using Gerenciador_Condominios.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Gerenciador_Condominios.Controllers
 {
+    [Authorize(Roles = "Administrador,Sindico")]
     public class DashboardController : Controller
     {
         private readonly IAluguelRepositorio _aluguelRepositorio;

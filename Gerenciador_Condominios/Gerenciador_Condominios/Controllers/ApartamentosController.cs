@@ -1,10 +1,12 @@
 ﻿using Gerenciador_Condominios.BLL.Models;
 using Gerenciador_Condominios.DAL.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Gerenciador_Condominios.Controllers
 {
+    [Authorize(Roles = "Administrador,Sindico")]
     public class ApartamentosController : Controller
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
